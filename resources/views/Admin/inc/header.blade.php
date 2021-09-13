@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+    <title>Technow Pakistan</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{url('public/assets/admin/images/favicon.png')}}">
     <!-- Pignose Calender -->
@@ -220,7 +220,7 @@
                         <li class="icons dropdown">
                             <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
                                 <span class="activity active"></span>
-                                <img src="{{url('../storage/app')}}/{{session('onlineuser')['img']}}" height="40" width="40" alt="">
+                                {{-- <img src="{{url('../storage/app')}}/{{session('onlineuser')['img']}}" height="40" width="40" alt=""> --}}
                             </div>
                             <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                                 <div class="dropdown-content-body">
