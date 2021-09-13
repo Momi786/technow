@@ -44,6 +44,11 @@ Route::get('/contact',[HomeController::class,'contact']);
 Route::get('/admin',[AdminHome::class,'adminHome']);
 Route::post('/admin',[AdminHome::class,'loginProcess']);
 
+    // Login Route
+    Route::get('/login', [AdminHome::class,'login']);
+
+
+
 // Services Routes
 Route::group(['prefix'=>'admin'], function(){
     Route::get('/logout',[AdminHome::class,'logout']);
