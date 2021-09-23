@@ -1,4 +1,12 @@
 <!-- ======= Footer ======= -->
+
+@php
+    foreach($footer as $data){
+        if($data->name == 'footer'){
+            $footerData = $data;
+        }
+    }
+@endphp
 <footer id="footer">
 
     <div class="footer-newsletter">
@@ -24,9 +32,9 @@
                 "></a>
 
             <p>
-                G Magnolia Park, Gujranwala, Pakistan <br><br>
-              <strong>Phone:</strong> +92 345 66770000<br>
-              <strong>Email:</strong> info@technowpakistan.com<br>
+                {{$footerData->address}} <br><br>
+              <strong>Phone:</strong> {{$footerData->phone}}<br>
+              <strong>Email:</strong> {{$footerData->email}}<br>
             </p>
           </div>
 
@@ -44,17 +52,16 @@
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                @foreach ($service as $data )
+                    <li><i class="bx bx-chevron-right"></i> <a href="#">{{$data->title}}</a></li>
+                @endforeach
+
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Social Networks</h4>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+            <p>{{$footerData->description}}</p>
             <div class="social-links mt-3">
               <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
               <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>

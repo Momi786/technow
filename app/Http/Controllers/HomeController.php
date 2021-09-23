@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\HomeContentModel;
+use App\Models\FooterModel;
 
 // Service Model Load
 
@@ -17,7 +18,8 @@ class HomeController extends Controller
         $allContent = HomeContentModel::all();
         $service = Services::orderBy('id','desc')->where('feature',1)->skip(0)->take(4)->get();
         $team = Team::orderBy('id','desc')->where('feature',1)->skip(0)->take(4)->get();
-        return view('web.index',compact('team','service','allContent'));
+        $footer = FooterModel::all();
+        return view('web.index',compact('team','service','allContent','footer'));
     }
 
     // Serevice Page function

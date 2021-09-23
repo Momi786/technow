@@ -54,6 +54,10 @@ Route::group(['prefix'=>'admin'], function(){
     Route::get('/logout',[AdminHome::class,'logout']);
     Route::get('/home-content',[AdminHome::class,'homeContent']);
     Route::post('/home-content',[AdminHome::class,'homeContentChange']);
+    // footer
+    Route::get('/footer',[AdminHome::class,'footer']);
+    Route::post('/footer',[AdminHome::class,'footer_process']);
+
     // Services Routes
     Route::get('/services-list',[ServicesController::class,'serviceList']);
     Route::get('/add-service',[ServicesController::class,'addService']);

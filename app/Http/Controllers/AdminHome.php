@@ -5,63 +5,37 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\HomeContentModel;
+use App\Models\FooterModel;
 
 class AdminHome extends Controller
 {
     public function adminHome(Request $request){
-
+        if ($request->session()->has('onlineuser')) {
             return view('Admin.index');
-
+        }else {
+            return view('Admin.login');
+        }
     }
 
 
-    // Login process
-        public function login()
-        {
-            return view('Admin.login');
+    // login Process
+    public function loginProcess(Request $request){
+        $data = $request->all();
+        $user = User::where('email',$data['email'])->where('password',$data['password'])->first();
+        if ($user) {
+            $request->session()->put('onlineuser',$user);
+            return back();
+        }else{
+            return back()->with('error','wrong username or password.');
         }
-
-        // login Process
-
-        public function loginProcess(Request $request)
-        {
-            // validate input fields
-            $request->validate([
-                'email' => 'required|email',
-                'password' => 'required|min:6'
-            ]);
-
-            // Get USer From Data Base
-            $credentials = User::where('email', '=', $request->email);
-
-            if(!$credentials){
-                return back()->with('fail','We Do not Recognize Your Email');
-            }else {
-                
-            }
-
+    }
+    // logout process
+    public function logout(Request $request){
+        if($request->Session()->has('onlineuser')){
+            $request->Session()->pull('onlineuser');
         }
-
-
-
-    // // login Process
-    // public function loginProcess(Request $request){
-    //     $data = $request->all();
-    //     $user = User::where('email',$data['email'])->where('password',$data['password'])->first();
-    //     if ($user) {
-    //         $request->session()->put('onlineuser',$user);
-    //         return back();
-    //     }else{
-    //         return back()->with('error','wrong username or password.');
-    //     }
-    // }
-    // // logout process
-    // public function logout(Request $request){
-    //     if($request->Session()->has('onlineuser')){
-    //         $request->Session()->pull('onlineuser');
-    //     }
-    //     return redirect('admin');
-    // }
+        return redirect('admin');
+    }
     // homeContent process
     public function homeContent(Request $request){
         $allData = HomeContentModel::all();
@@ -74,5 +48,20 @@ class AdminHome extends Controller
         $allData->fill($data);
         $allData->save();
       return back();
+    }
+
+
+    //Footer Data
+    public function footer(Request $request){
+        $allData= FooterModel::all();
+        return view('Admin.footer.index',compact('allData'));
+    }
+
+    public function footer_process(Request $request){
+        $data = $request->all();
+        $allData = FooterModel::where('name',$data['name'])->first();
+        $allData-> fill($data);
+        $allData->save();
+        return back();
     }
 }

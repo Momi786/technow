@@ -69,12 +69,12 @@ foreach($allContent as $data){
                     </div>
                 </div>
                 <div class="item purple">
-                    <div class="container">
+                    <div class="container mt-5">
                         <div class="row">
                             <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
                                 <div>
                                     <div class="font-big">
-                                        <h1><span class="text-warning"> Technow</span>Pakistan</h1>
+                                        <h1><span class="text-warning"> Technow</span> Pakistan</h1>
                                         <p class="text-white">Choose A Powerful <br>Design For Your Startup</p>
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@ foreach($allContent as $data){
                     </div>
                 </div>
                 <div class="item">
-                    <div class="container">
+                    <div class="container mt-5">
                         <div class="row">
                             <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
                                 <div>
@@ -112,7 +112,7 @@ foreach($allContent as $data){
                 </div>
             </div>
         </div>
-    
+
     <!--================End Slider Area =================-->
 
   </section><!-- End Hero -->
@@ -321,7 +321,7 @@ foreach($allContent as $data){
   </section><!-- End Pricing Section -->
 
    <!-- ======= Team Section ======= -->
-   <section id="team" class="team section-bg">
+   {{-- <section id="team" class="team section-bg">
     <div class="container" data-aos="fade-up">
 
       <div class="section-title">
@@ -359,8 +359,31 @@ foreach($allContent as $data){
       </div>
 
     </div>
-  </section><!-- End Team Section -->
+  </section><!-- End Team Section --> --}}
 
+
+  <section id="team">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2>{{$team1->title}}</h2>
+            <p>{{$team1->description}}</p>
+        </div>
+        <div class="row">
+            @foreach ($team as $data)
+                <div class="col-lg-3 col-md-6 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                    <div class="member"> <img src="{{url('storage/app')}}/{{$data->img}}" class="img-fluid" alt="">
+                        <div class="member-info">
+                            <div class="member-info-content">
+                                <h4>{{$data->name}}</h4> <span>{{$data->designation}}</span>
+                                {{-- <div class="social"> <a href=""><i class="fa fa-twitter"></i></a> <a href=""><i class="fa fa-facebook"></i></a> <a href=""><i class="fa fa-google-plus"></i></a> <a href=""><i class="fa fa-linkedin"></i></a> </div> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
 
 
 @include('web.inc.footer')
@@ -378,3 +401,97 @@ foreach($allContent as $data){
   });
 });
 </script>
+
+<style>
+
+
+.section-header h3 {
+    font-size: 36px;
+    color: #283d50;
+    text-align: center;
+    font-weight: 500;
+    position: relative
+}
+
+.section-header p {
+    text-align: center;
+    margin: auto;
+    font-size: 15px;
+    padding-bottom: 60px;
+    color: #556877;
+    width: 50%
+}
+
+.fadeInUp {
+    animation-name: fadeInUp
+}
+
+#team .member {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden
+}
+
+#team .member .member-info {
+    opacity: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 28px;
+    right: 0;
+    transition: all 0.2s
+}
+
+#team .member .member-info-content {
+    margin-top: 50px;
+    transition: margin 0.2s
+}
+
+#team .member:hover .member-info {
+    background: rgba(0, 62, 128, 0.7);
+    opacity: 1;
+    transition: 0.4s;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%
+}
+
+.member img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%
+}
+
+#team .member h4 {
+    font-weight: 700;
+    margin-bottom: 2px;
+    font-size: 18px;
+    color: #fff
+}
+
+#team .member span {
+    font-style: italic;
+    display: block;
+    font-size: 13px;
+    color: #fff
+}
+
+#team .member .social a {
+    transition: none;
+    color: #fff
+}
+</style>
